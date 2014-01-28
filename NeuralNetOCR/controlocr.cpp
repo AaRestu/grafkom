@@ -210,7 +210,6 @@ void ControlOCR::loadImage()
         //cout << "Error : Gagal membuka gambar..!!" << endl;
         return;
     }
-
     cariBlokObjectKarakter(I, _I, minW, minH);
 }
 
@@ -321,6 +320,14 @@ void ControlOCR::GarisVertikal(Mat &src, int x, int yAwal, int yAkhir)
 //[baris][kolom]
 void ControlOCR::cariBlokObjectKarakter(Mat gambar, Mat &gambarBlok, int minW, int minH)
 {
+
+    for(unsigned int i = 0; i < karakter.size(); ++i){
+        for(unsigned j = 0; j < karakter[i].size(); ++j){
+            delete &karakter[i][j];
+        }
+    }
+    karakter.clear();
+
     vector<Mat> bkarakter;
     Mat tkarakter;
     Mat T, G;

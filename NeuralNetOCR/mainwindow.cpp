@@ -108,6 +108,20 @@ void MainWindow::on_pushButtonTraining_clicked()
 {
 
     if(threadLearning->Stop){
+
+        cOCR->wL = ui->spinBoxWL->value();
+        ui->spinBoxWL->setEnabled(false);
+        cOCR->hL = ui->spinBoxHL->value();
+        ui->spinBoxHL->setEnabled(false);
+        cOCR->maxInterasi = ui->spinBoxMaxInterasi->value();
+        ui->spinBoxMaxInterasi->setEnabled(false);
+        cOCR->targetError = ui->doubleSpinBoxTargetError->value();
+        ui->doubleSpinBoxTargetError->setEnabled(false);
+        Neuron::eta = ui->doubleSpinBoxEta->value();
+        ui->doubleSpinBoxEta->setEnabled(false);
+        Neuron::alpha = ui->doubleSpinBoxAlpha->value();
+        ui->doubleSpinBoxAlpha->setEnabled(false);
+
         if(!cOCR->I.empty() && !cOCR->_I.empty() && !cOCR->siap ){
 
             char c;
@@ -149,18 +163,7 @@ void MainWindow::on_pushButtonTraining_clicked()
             cOCR->topology.push_back(cOCR->targetkarakter.size());
             cOCR->ocrNet.setTopology(cOCR->topology);
         }
-        cOCR->wL = ui->spinBoxWL->value();
-        ui->spinBoxWL->setEnabled(false);
-        cOCR->hL = ui->spinBoxHL->value();
-        ui->spinBoxHL->setEnabled(false);
-        cOCR->maxInterasi = ui->spinBoxMaxInterasi->value();
-        ui->spinBoxMaxInterasi->setEnabled(false);
-        cOCR->targetError = ui->doubleSpinBoxTargetError->value();
-        ui->doubleSpinBoxTargetError->setEnabled(false);
-        Neuron::eta = ui->doubleSpinBoxEta->value();
-        ui->doubleSpinBoxEta->setEnabled(false);
-        Neuron::alpha = ui->doubleSpinBoxAlpha->value();
-        ui->doubleSpinBoxAlpha->setEnabled(false);
+
 
         threadLearning->cOCR = cOCR;
         threadLearning->Stop = false;
